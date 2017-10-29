@@ -1,0 +1,114 @@
+body{
+
+	font-family: 'Open Sans', sans-serif;
+
+}
+
+
+ul{
+
+	padding: 0;
+	margin: 0;
+}
+
+
+button.create-column{
+
+	font-size:20px;
+	margin-left:50px;
+
+}
+
+
+h1.board-title{
+
+	text-align: center;
+}
+
+.column-container{
+
+	margin: 0 auto;
+	margin-top: 100px;
+	padding: 50px;
+	max-width: 1200px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	justify-content: space-around;
+}
+
+
+.column{
+
+	flex-grow: 1;
+	margin: 10px;
+	padding:10px;
+	background-color: #aeaeae;
+	position: relative;
+	border-radius: 2px;
+	flex: 1 1 auto;
+
+}
+
+
+.column h2{
+
+	text-transform: uppercase;
+	color: #1c80a7;
+}
+
+ul{
+
+	margin-top: 40px;
+	background-color: inherit;
+	list-style-type:none;
+	padding-bottom: 100px;
+}
+
+
+ul li::before{
+
+	content: "\2023";
+	font-size: 22px;
+	margin-right:5px;
+	background-color: inherit;
+
+}
+
+
+li{
+
+	position: relative;
+	background-color: #ddd;
+	padding: 0 4px;
+	display: block;
+	margin: 10px 0;
+	border-radius: 4px;
+}
+
+li p{
+
+	display: inline-block;
+	max-width:400px;
+
+}
+
+li > .btn-delete{
+
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	font-size: 10px;
+	color: red;
+
+}
+
+.column > .btn-delete{
+
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	font-size: 20px;
+	color: red;
+
+}
