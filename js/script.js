@@ -2,6 +2,26 @@
 $(function() {
 
 
+	// RANDOMIZE ID
+
+	function randomString() {
+
+		var chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
+		var str = '';
+
+		for (var i = 0; i < 10; i++) {
+
+			str += chars[Math.floor(Math.random() * chars.length)];
+		}
+
+		return str;
+	}
+
+
+
+
+
+
 	// obiekt tablicy
 
 	var board = {
@@ -47,20 +67,6 @@ $(function() {
 		board.addColumn(column);
 	});
 	
-	// RANDOMIZE ID
-
-	function randomString() {
-
-		var chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
-		var str = '';
-
-		for (var i = 0; i < 10; i++) {
-
-			str += chars[Math.floor(Math.random() * chars.length)];
-		}
-
-		return str;
-	}
 
 
 
@@ -69,33 +75,13 @@ $(function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// specjalnie dodalem diva do htmla zeby dzialalo, na var page jest to $element: $('#test'), trzba poprawic zeby bylo cale ok
-
+	// fcja konstruktor tablicy
 
 
 
 	function Board(name) {
 
-		console.log('Dong');
+		console.log('Board function init');
 		var self = this;
 		this.id = randomString();
 		this.name = name;
@@ -155,7 +141,7 @@ $(function() {
 
 	var page = {
 
-		$element: $('#test'),
+		$element: $('body'),
 
 		addBoard: function(newboard) {
 
@@ -169,7 +155,7 @@ $(function() {
 
 	$('.create-board').on('click', function() {
 
-		console.log('Ding');
+		console.log('create-board button');
 		var name = prompt('Enter new board\'s name'),
 			newboard = new Board(name);
 
@@ -189,32 +175,13 @@ $(function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	function Column(name) {
 
 		var self = this; // for nested fctions to avoid 'this' keyword's context loss
-
+							// utrata kontekstu pojawia sie najczesciej po przekazaniu fcji jako parametru innej fcji
 		this.id = randomString();
 		this.name = name;
-		this.$element = createColumn(); // nadajemy klasie właściwość(konkretnie nowy element jQuery) '$element' za pomocą fcji
+		this.$element = createColumn(); // nadajemy klasie właściwość(konkretnie nowy element jQuery) '$element' za pomocą fcji (jej return'a)
 
 		function createColumn() {
 
@@ -257,7 +224,7 @@ $(function() {
 
 	Column.prototype = {	
 
-		addCard: function(card) {
+		addCard: function(card) { // nazwa atrybutu 'card' tworzona jest jakby w locie, js wiaze te nazwe z new Card(prompt('Enter new card\'s name') z onclicka ale nigdzie nie nazywalismy tego jako card, moglibysmy rownie dobrze wpisac 'balonik' i sie tego trzymac dalej i by dzialalo
 
 			this.$element.children('ul').append(card.$element);	// prototyp nie jest zagniezdzony w createColumn(), więc możemy użyć 'this' bez utraty kontekstu
 		},
@@ -267,6 +234,8 @@ $(function() {
 			this.$element.remove();
 		}
 	};
+
+
 
 
 
@@ -294,7 +263,8 @@ $(function() {
 
 		    //EVENT
 
-		    $cardDelete.click(function(){
+		    $cardDelete.click(function() {
+
 		           		self.removeCard();
 		    });
 
@@ -303,7 +273,7 @@ $(function() {
 		    $card.append($cardDelete)
 		    	 .append($cardDescription);
 
-		    return $card;
+		    return $card; //to zostanie appendowane do kolumny w prototypie addCard kolumny
 		}
 	}
 

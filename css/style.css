@@ -62,7 +62,7 @@ ul{
 	margin-top: 40px;
 	background-color: inherit;
 	list-style-type:none;
-	padding-bottom: 100px;
+	padding-bottom: 150px;
 }
 
 
@@ -103,7 +103,17 @@ li > .btn-delete{
 
 }
 
-.column > .btn-delete{
+
+.board{
+
+	position: relative;
+	background-color: #eee;
+	border: 1px solid #bbb;
+	margin-top: 40px;
+}
+
+
+.column > .btn-delete, .board > .btn-delete{
 
 	position: absolute;
 	top: 5px;
